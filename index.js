@@ -14,7 +14,7 @@ app.use(express.json());
 
 app.use(cookieParser());
 
-// we need cors to send request from frowser with no problems
+// we need cors to send request from browser with no problems
 app.use(cors({
     credentials: true,
     origin: process.env.CLIENT_URL
@@ -31,7 +31,7 @@ const start = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
-        app.listen(PORT, () => console.log(`Server Started on ${process.env.API_URL}`))
+        // app.listen(PORT, () => console.log(`Server Started on ${process.env.API_URL}`))
     } catch (e) {
         console.log(e);
     }
