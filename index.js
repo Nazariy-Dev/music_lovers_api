@@ -31,7 +31,7 @@ const start = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         })
-        // app.listen(PORT, () => console.log(`Server Started on ${process.env.API_URL}`))
+        app.listen(PORT, () => console.log(`Server Started on ${process.env.API_URL}`))
     } catch (e) {
         console.log(e);
     }
