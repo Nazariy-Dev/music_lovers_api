@@ -14,7 +14,7 @@ class UserController {
 
             // http only - can't change or get cookie inside browser using Java Script
             // if https is used, secure: true can be added
-            res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+            res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'none', secure: true })
             return res.json(userData);
         } catch (e) {
             // pass erros to errors middleware
@@ -26,7 +26,7 @@ class UserController {
         try {
             const { email, password } = req.body;
             const userData = await userService.login(email, password);
-            res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true })
+            res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: true, sameSite: 'none', secure: true })
             return res.json(userData);
         } catch (e) {
             next(e);
