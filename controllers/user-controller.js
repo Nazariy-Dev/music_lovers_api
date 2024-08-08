@@ -59,7 +59,6 @@ class UserController {
     async refresh(req, res, next) {
         try {
             const { refreshToken } = req.cookies;
-            console.log("🚀 ~ UserController ~ refresh ~ refreshToken:", refreshToken)
             const userData = await userService.refresh(refreshToken);
             res.cookie('refreshToken', userData.refreshToken, { maxAge: 30 * 24 * 60 * 60 * 1000, httpOnly: false, sameSite: 'none', secure: true})
             return res.json(userData);
@@ -78,9 +77,9 @@ class UserController {
     }
 
     async toggleFavourite(req, res, next) {
-        const { user, link } = req.body
+        const { user, _id } = req.body
         try {
-            const likedSongs = await userService.toggleFavourite(user, link);
+            const likedSongs = await userService.toggleFavourite(user, _id);
             return res.json(likedSongs)
         } catch (e) {
             next(e);

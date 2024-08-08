@@ -79,9 +79,9 @@ class UserService {
         return users;
     }
 
-    async toggleFavourite(user, link) {
+    async toggleFavourite(user, _id) {
         const userFromDB = await UserModel.findOne({ _id: user })
-        const song = await SongModel.findOne({ link })
+        const song = await SongModel.findOne({ _id })
 
         const likedSongs = userFromDB.songs
         const songIsLiked = likedSongs.includes(song._id)
